@@ -26,13 +26,8 @@ block content
         .post-content
           != post.excerpt
       else if post.content
-        - var br = post.content.indexOf('\n')
-        if br < 0
-          .post-content
-            != post.content
-        else
-          .post-content
-            != post.content.substring(0, br)
+        .post-content
+          != post.content.replace(/<(?:.)*?>/gm, '').substr(0, 220)
       p(class='readmore')
         a(href=url_for(post.path))= __('Readmore')
 
